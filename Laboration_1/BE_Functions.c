@@ -58,7 +58,7 @@ float loopGivenTime(int array[],int size,char algorithm){
         }
         runs --;
     }
-
+    
     return totalTempTime/nRuns;
 }
 
