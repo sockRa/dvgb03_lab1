@@ -45,16 +45,16 @@ double calc(double t, double n, int toPower){   //Calc function for doing calcul
     }
 }
 
-float loopGivenTime(int array[],int size,char algorithm){
+float loopGivenTime(int algID,int size){
 
     int runs = nRuns;
     while(runs != 0){
-        switch(algorithm){
-        case 'b': bubbleSort(array,size); break;
-        // case 'i':   
-        // case 'q':
-        // case 'l':
-        // case 'b':
+        switch(algID){
+        case 1: bubbleSort(size); break;
+        // case 2:   
+        // case 3:
+        // case 4:
+        // case 5:
         }
         runs --;
     }
@@ -100,9 +100,9 @@ char *setCase(char Case){    //Set case based of argument
 /* Algorithms                                                           
 /****************************************************************************/
 
-void bubbleSort(int array[],int size){
+void bubbleSort(int size){
     int i,j,temp;
-  
+    
     startTimer();
 
     for(i = 0; i < size; i++){
@@ -117,20 +117,4 @@ void bubbleSort(int array[],int size){
     }
 
     stopTimer();
-}
-
-/****************************************************************************/
-/* Bubble Sort - All cases                                                            
-/****************************************************************************/
-
-float BE_BubbleSort_BestCase(int size){
-
-    int array[size],i,avgTime = 0;
-
-    for(i=0;i<size;i++){
-        array[i] = i;
-    }
-
-    return loopGivenTime(array,size,'b');
-
 }

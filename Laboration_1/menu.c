@@ -4,11 +4,24 @@
 /****************************************************************************/
 /* global data objects                                                      */
 /****************************************************************************/
-#define   MAXLNC   80                   /* max number of input line chars   */
-#define   MAXLN    MAXLNC+1             /* max size of input line buffer    */
+#define     MAXLNC              80                   /* max number of input line chars   */
+#define     MAXLN               MAXLNC+1             /* max size of input line buffer    */
 
 char       lnbuff[MAXLN];               /* input line buffer                */
-int        echomode=0;                  /* echo mode on/off                 */
+int        echomode=0;                  /* echo mode on/off 
+/****************************************************************************/
+/* All algorithms and cases. Each defined by their own id.
+/****************************************************************************/
+#define     id_BUBBLESORT       1
+#define     id_INSERSION        2
+#define     id_QUICKSORT        3
+#define     id_LINEARSEARCH     4
+#define     id_BINARYSEARCH     5
+
+#define     id_BESTCASE         1
+#define     id_RANDOMCASE       2
+#define     id_WORSTCASE        3
+
 
 /****************************************************************************/
 /* User dialog functions                                                    */
@@ -80,7 +93,7 @@ void UI_runmenu(){
 
             case 'a': case 'A': UI_dispmenu();                              break;
             case 'b': case 'B': printf("To be done\n");                     break;
-            case 'c': case 'C': FE_BubbleSort_BestCase();                   break;
+            case 'c': case 'C': initArray(id_BUBBLESORT,id_BESTCASE);       break;
             case 'd': case 'D': printf("To be done\n");                     break;
             case 'e': case 'E': printf("To be done\n");                     break;
             case 'f': case 'F': printf("To be done\n");                     break;
