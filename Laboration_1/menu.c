@@ -93,7 +93,7 @@ void UI_runmenu(){
 
             case 'a': case 'A': UI_dispmenu();                              break;
             case 'b': case 'B': printf("To be done\n");                     break;
-            case 'c': case 'C': initArray(id_BUBBLESORT,id_BESTCASE);       break;
+            case 'c': case 'C': runAlgorithm(id_BUBBLESORT,id_BESTCASE);       break;
             case 'd': case 'D': printf("To be done\n");                     break;
             case 'e': case 'E': printf("To be done\n");                     break;
             case 'f': case 'F': printf("To be done\n");                     break;

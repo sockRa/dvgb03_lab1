@@ -26,6 +26,8 @@ static void UI_dispmenu();
 int doubleSize(int size);
 void tableDisplay(int time[],int alg,char CaseChoice);
 void FE_BubbleSort_BestCase();
+int initArray(int caseID, int size);
+int runAlgorithm(int algID, int caseID);
 
 //BE_Functions
 void error();
@@ -37,5 +39,5 @@ char *setName(int alg);
 char *setCase(char Case);
 void bubbleSort(int array[],int size);
 float BE_BubbleSort_BestCase(int size);
-float loopGivenTime(int algID,int size);
+float loopGivenTime(int algID,int array[],int size);
 

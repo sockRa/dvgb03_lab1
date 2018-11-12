@@ -33,13 +33,13 @@ void tableDisplay(int time[],int alg,char CaseChoice){
     printf("-------------------------------------------------------------------------\n");
 }
 
-int initArray(int algID, int caseID){
+int initArray(int caseID, int size){
 
-    int i,time[numTest];
+    int i;
 
     switch(caseID){
 
-        case 1:     for(i=0;i<numTest;i++) time[i] = runAlgorithm(algID,arrayOfSizes[i]); 
+        case 1:    for(i=0;i<size;i++)   
     }
 
     tableDisplay(time,1,'b');
@@ -57,11 +57,14 @@ int initArray(int algID, int caseID){
 @   caseID 3 = WORSTCASE
 */
 
-int runAlgorithm(int algID, int dataSize){
+int runAlgorithm(int algID, int caseID){
+
+    int list[numTest],i,time[numTest];
 
     switch(algID){
 
-        case 1:     return loopGivenTime(algID, dataSize);     break;
+        case 1:    for(i=0;i<numTest;i++){ list[i] = initArray(caseID,arrayOfSizes[i]); time[i] = loopGivenTime(algID,list,arrayOfSizes[i]);}   break;
+
     }
 
 }

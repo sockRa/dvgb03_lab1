@@ -45,12 +45,12 @@ double calc(double t, double n, int toPower){   //Calc function for doing calcul
     }
 }
 
-float loopGivenTime(int algID,int size){
+float loopGivenTime(int algID,int array[],int size){
 
     int runs = nRuns;
     while(runs != 0){
         switch(algID){
-        case 1: bubbleSort(size); break;
+        case 1: bubbleSort(array,size); break;
         // case 2:   
         // case 3:
         // case 4:
@@ -100,7 +100,7 @@ char *setCase(char Case){    //Set case based of argument
 /* Algorithms                                                           
 /****************************************************************************/
 
-void bubbleSort(int size){
+void bubbleSort(int array[],int size){
     int i,j,temp;
     
     startTimer();
