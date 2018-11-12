@@ -24,8 +24,7 @@ void startTimer(){
 void stopTimer(){
 
     endT = clock();
-    totalTempTime = (int)(endT - startT);// / CLOCKS_PER_SEC; 
-    //printf("TotalTempTime: %ld\n",totalTempTime);
+    totalTempTime = (int)(endT - startT);
     resetTimer();
 }
 
