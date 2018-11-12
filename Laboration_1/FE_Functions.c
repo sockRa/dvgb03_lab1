@@ -15,7 +15,7 @@ static int arrayOfSizes[] = {SIZE1,SIZE2,SIZE3,SIZE4,SIZE5};    /*Init array*/
 /****************************************************************************/
 
 
-void tableDisplay(int time[],int alg,char CaseChoice){
+void tableDisplay(int times[],int alg,char CaseChoice){
 
     char *name = setName(alg);
     char *Case = setCase(CaseChoice);
@@ -25,24 +25,35 @@ void tableDisplay(int time[],int alg,char CaseChoice){
     printf("-------------------------------------------------------------------------\n");
     printf("---     N     Time          T/N            T/N^2        T/N^3         ---\n");
     printf("-------------------------------------------------------------------------\n");
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[0],time[0],calc(time[0],arrayOfSizes[0],1), calc(time[0],arrayOfSizes[0],2), calc(time[0],arrayOfSizes[0],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[1],time[1],calc(time[1],arrayOfSizes[1],1), calc(time[1],arrayOfSizes[1],2), calc(time[1],arrayOfSizes[1],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[2],time[2],calc(time[2],arrayOfSizes[2],1), calc(time[2],arrayOfSizes[2],2), calc(time[2],arrayOfSizes[2],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[3],time[3],calc(time[3],arrayOfSizes[3],1), calc(time[3],arrayOfSizes[3],2), calc(time[3],arrayOfSizes[3],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[4],time[4],calc(time[4],arrayOfSizes[4],1), calc(time[4],arrayOfSizes[4],2), calc(time[4],arrayOfSizes[4],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[0],times[0],calc(times[0],arrayOfSizes[0],1), calc(times[0],arrayOfSizes[0],2), calc(times[0],arrayOfSizes[0],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[1],times[1],calc(times[1],arrayOfSizes[1],1), calc(times[1],arrayOfSizes[1],2), calc(times[1],arrayOfSizes[1],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[2],times[2],calc(times[2],arrayOfSizes[2],1), calc(times[2],arrayOfSizes[2],2), calc(times[2],arrayOfSizes[2],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[3],times[3],calc(times[3],arrayOfSizes[3],1), calc(times[3],arrayOfSizes[3],2), calc(times[3],arrayOfSizes[3],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[4],times[4],calc(times[4],arrayOfSizes[4],1), calc(times[4],arrayOfSizes[4],2), calc(times[4],arrayOfSizes[4],3));
     printf("-------------------------------------------------------------------------\n");
 }
 
-int initArray(int caseID, int size){
+void initArray(int algID,int caseID, int size, int *list){
 
-    int i;
+    int i,random;
+    srand(time(NULL));
+    switch(algID){
 
-    switch(caseID){
+        case 1: switch(caseID){
 
-        case 1:    for(i=0;i<size;i++)   
+            case 1:     for(i=0;i<size;i++) *(list + i) = i;                                    break;
+            case 2:     for(i=0;i<size;i++) *(list + i) = size - i;                             break;  
+            case 3:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;
+        
+        } break; 
+
+        case 2: switch(caseID){
+
+            case 1:
+            case 2:
+            case 3:
+        }  
     }
-
-    tableDisplay(time,1,'b');
 }
 
 /*
@@ -57,16 +68,16 @@ int initArray(int caseID, int size){
 @   caseID 3 = WORSTCASE
 */
 
-int runAlgorithm(int algID, int caseID){
+void runAlgorithm(int algID, int caseID){       /* GLÖM INTE ATT TA BORT DEN HÄR SKITEN! TOTALT ONÖDIG. LÄGG ALLT I INITARRAY ISTÄLLET, GLÖM INTE ATT FREE(ARRAY)*/
 
-    int list[numTest],i,time[numTest];
+    int *list,i,times[numTest];
 
     switch(algID){
 
-        case 1:    for(i=0;i<numTest;i++){ list[i] = initArray(caseID,arrayOfSizes[i]); time[i] = loopGivenTime(algID,list,arrayOfSizes[i]);}   break;
+        case 1:    for(i=0;i<numTest;i++){ list = malloc(sizeof(int*) * arrayOfSizes[i]); initArray(algID,caseID,arrayOfSizes[i], list); times[i] = loopGivenTime(algID,list,arrayOfSizes[i]);}   break;
 
     }
-
+    tableDisplay(times,1,'b');
 }
     
 /****************************************************************************/

@@ -24,10 +24,10 @@ static void UI_dispmenu();
 
 //FE_Functions
 int doubleSize(int size);
-void tableDisplay(int time[],int alg,char CaseChoice);
+void tableDisplay(int times[],int alg,char CaseChoice);
 void FE_BubbleSort_BestCase();
-int initArray(int caseID, int size);
-int runAlgorithm(int algID, int caseID);
+void initArray(int algID,int caseID, int size, int *list);
+void runAlgorithm(int algID, int caseID);
 
 //BE_Functions
 void error();
