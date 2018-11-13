@@ -1,10 +1,9 @@
 #include "driver.h"
 
-
 /*Global data**********************************************/
-int nRuns = 10;         /*how many times should the algorithm go*/
+int nRuns = 10,totalTempTime = 0;         /*how many times should the algorithm go*/
 
-clock_t startT,endT,totalTempTime; 
+clock_t startT,endT; 
 
 /**********************************************************/
 
@@ -24,7 +23,7 @@ void startTimer(){
 void stopTimer(){
 
     endT = clock();
-    totalTempTime = (int)(endT - startT);// / CLOCKS_PER_SEC; 
+    totalTempTime += ((int)(endT - startT));
     //printf("TotalTempTime: %ld\n",totalTempTime);
     resetTimer();
 }
@@ -33,6 +32,7 @@ void resetTimer(){
     startT = 0;
     endT = 0;
 }
+
 
 double calc(double t, double n, int toPower){   //Calc function for doing calculations that's gonna be displayed as result.
 
@@ -45,21 +45,24 @@ double calc(double t, double n, int toPower){   //Calc function for doing calcul
     }
 }
 
-float loopGivenTime(int algID,int array[],int size){
+int loopGivenTime(int algID,int array[],int size){
 
-    int runs = nRuns;
+    int runs = nRuns,totalTime;
+    printf("array: %d\n",array[0]);
     while(runs != 0){
         switch(algID){
         case 1: bubbleSort(array,size); break;
-        // case 2:   
+        case 2: insertion(array,size);  break;   
         // case 3:
         // case 4:
         // case 5:
         }
         runs --;
     }
-    
-    return totalTempTime/nRuns;
+    totalTime = totalTempTime;      //Need to reset totalTempTime after nRuns
+    totalTempTime = 0;
+
+    return totalTime/nRuns;
 }
 
 /****************************************************************************/
@@ -67,10 +70,10 @@ float loopGivenTime(int algID,int array[],int size){
 /****************************************************************************/
 
 
-char *setName(int alg){     //Sets name based of argument
+char *setName(int algID){     //Sets name based of argument
 
     char *tempName;
-    switch(alg){
+    switch(algID){
 
         case 1: tempName = "Bubble Sort";       break;
         case 2: tempName = "Insertion Sort";    break;
@@ -82,14 +85,14 @@ char *setName(int alg){     //Sets name based of argument
     return tempName;
 }
 
-char *setCase(char Case){    //Set case based of argument
+char *setCase(int Case){    //Set case based of argument
 
     char *tempCase;
     switch(Case){
 
-        case 'b': tempCase = "Best Case";        break;
-        case 'r': tempCase = "Random Case";      break;
-        case 'w': tempCase = "Worst Case";       break;
+        case 1: tempCase = "Best Case";        break;
+        case 2: tempCase = "Random Case";      break;
+        case 3: tempCase = "Worst Case";       break;
         default: error();
         
     }
@@ -108,12 +111,31 @@ void bubbleSort(int array[],int size){
     for(i = 0; i < size; i++){
         for(j = 0; j < (size - i - 1); j++){
             if(array[j] > array[j + 1]){
-                
                 temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
             }
         }
+    }
+
+    stopTimer();
+}
+
+void insertion(int array[], int size){
+
+    int i = 1,j,temp;
+    startTimer();
+
+    while(i < size){
+        j = i;
+        while(j > 0 && array[j - 1] > array[j]){
+            
+            temp = array[j];
+            array[j] = array[j - 1];
+            array[j - 1] = temp;
+            j = j - 1;
+        }
+        i = i + 1;
     }
 
     stopTimer();

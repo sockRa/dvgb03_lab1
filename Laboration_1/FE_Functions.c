@@ -15,47 +15,60 @@ static int arrayOfSizes[] = {SIZE1,SIZE2,SIZE3,SIZE4,SIZE5};    /*Init array*/
 /****************************************************************************/
 
 
-void tableDisplay(int times[],int alg,char CaseChoice){
+void tableDisplay(int times[],int algID,char caseID){
 
-    char *name = setName(alg);
-    char *Case = setCase(CaseChoice);
+    char *name = setName(algID);
+    char *Case = setCase(caseID);
 
     printf("-------------------------------------------------------------------------\n");
     printf("--- %s-%s                                            ---\n",name,Case);
     printf("-------------------------------------------------------------------------\n");
     printf("---     N     Time          T/N            T/N^2        T/N^3         ---\n");
     printf("-------------------------------------------------------------------------\n");
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[0],times[0],calc(times[0],arrayOfSizes[0],1), calc(times[0],arrayOfSizes[0],2), calc(times[0],arrayOfSizes[0],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[1],times[1],calc(times[1],arrayOfSizes[1],1), calc(times[1],arrayOfSizes[1],2), calc(times[1],arrayOfSizes[1],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[2],times[2],calc(times[2],arrayOfSizes[2],1), calc(times[2],arrayOfSizes[2],2), calc(times[2],arrayOfSizes[2],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[3],times[3],calc(times[3],arrayOfSizes[3],1), calc(times[3],arrayOfSizes[3],2), calc(times[3],arrayOfSizes[3],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",arrayOfSizes[4],times[4],calc(times[4],arrayOfSizes[4],1), calc(times[4],arrayOfSizes[4],2), calc(times[4],arrayOfSizes[4],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE1,times[0],calc(times[0],arrayOfSizes[0],1), calc(times[0],arrayOfSizes[0],2), calc(times[0],arrayOfSizes[0],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE2,times[1],calc(times[1],arrayOfSizes[1],1), calc(times[1],arrayOfSizes[1],2), calc(times[1],arrayOfSizes[1],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE3,times[2],calc(times[2],arrayOfSizes[2],1), calc(times[2],arrayOfSizes[2],2), calc(times[2],arrayOfSizes[2],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE4,times[3],calc(times[3],arrayOfSizes[3],1), calc(times[3],arrayOfSizes[3],2), calc(times[3],arrayOfSizes[3],3));
+    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE5,times[4],calc(times[4],arrayOfSizes[4],1), calc(times[4],arrayOfSizes[4],2), calc(times[4],arrayOfSizes[4],3));
     printf("-------------------------------------------------------------------------\n");
 }
 
-void initArray(int algID,int caseID, int size, int *list){
+void initArray(int algID,int caseID){
 
-    int i,random;
+    int i,j,random,*list,size,boolean = 1, times[numTest];
+    
     srand(time(NULL));
-    switch(algID){
 
-        case 1: switch(caseID){
+    for(j=0;j<numTest;j++){
 
-            case 1:     for(i=0;i<size;i++) *(list + i) = i;                                    break;
-            case 2:     for(i=0;i<size;i++) *(list + i) = size - i;                             break;  
-            case 3:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;
-        
-        } break; 
+        size = arrayOfSizes[j];             //For every iteration, size gets a new value 
+        list = malloc(sizeof(int*) * size);
 
-        case 2: switch(caseID){
+            //Special cases linked to specific algorithm and case
+            switch(algID){
+ 
+            }
+            
+            //Standard cases
+            if(boolean){
 
-            case 1:
-            case 2:
-            case 3:
-        }  
+                switch(caseID){
+                    case 1:     for(i=0;i<size;i++) *(list + i) = i;                                    break;      //Best-case, sorted order.          
+                    case 2:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;      //Random-case
+                    case 3:     for(i=0;i<size;i++) *(list + i) = size - i;                             break;      //Worst-case, decending order 
+                }
+            }boolean = 0; 
+
+                //Run algorithms
+                
+                switch(algID){
+
+                    case 1:     times[j] = loopGivenTime(algID,list,size);      break;      //Bubble-sort
+                    case 2:     times[j] = loopGivenTime(algID,list,size);      break;      //Insertion-sort                    
+                }free(list);
     }
+    tableDisplay(times,algID,caseID);
 }
-
 /*
 @   algID 1 = BUBBLESORT
 @   algID 2 = INSERSION
@@ -68,17 +81,19 @@ void initArray(int algID,int caseID, int size, int *list){
 @   caseID 3 = WORSTCASE
 */
 
-void runAlgorithm(int algID, int caseID){       /* GLÖM INTE ATT TA BORT DEN HÄR SKITEN! TOTALT ONÖDIG. LÄGG ALLT I INITARRAY ISTÄLLET, GLÖM INTE ATT FREE(ARRAY)*/
 
-    int *list,i,times[numTest];
 
-    switch(algID){
+// void runAlgorithm(int algID, int caseID){       /* GLÖM INTE ATT TA BORT DEN HÄR SKITEN! TOTALT ONÖDIG. LÄGG ALLT I INITARRAY ISTÄLLET, GLÖM INTE ATT FREE(ARRAY)*/
 
-        case 1:    for(i=0;i<numTest;i++){ list = malloc(sizeof(int*) * arrayOfSizes[i]); initArray(algID,caseID,arrayOfSizes[i], list); times[i] = loopGivenTime(algID,list,arrayOfSizes[i]);}   break;
+//     int *list,i,times[numTest];
 
-    }
-    tableDisplay(times,1,'b');
-}
+//     switch(algID){
+
+//         case 1:    for(i=0;i<numTest;i++){ list = malloc(sizeof(int*) * arrayOfSizes[i]); initArray(algID,caseID,arrayOfSizes[i], list); times[i] = loopGivenTime(algID,list,arrayOfSizes[i]);}   break;
+
+//     }
+//     tableDisplay(times,1,'b');
+// }
     
 /****************************************************************************/
 /* Bubble Sort - All cases                                                            

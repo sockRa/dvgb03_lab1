@@ -93,12 +93,12 @@ void UI_runmenu(){
 
             case 'a': case 'A': UI_dispmenu();                              break;
             case 'b': case 'B': printf("To be done\n");                     break;
-            case 'c': case 'C': runAlgorithm(id_BUBBLESORT,id_BESTCASE);    break;
-            case 'd': case 'D': runAlgorithm(id_BUBBLESORT,id_RANDOMCASE);  break;
-            case 'e': case 'E': printf("To be done\n");                     break;
-            case 'f': case 'F': printf("To be done\n");                     break;
-            case 'g': case 'G': printf("To be done\n");                     break;
-            case 'h': case 'H': printf("To be done\n");                     break;
+            case 'c': case 'C': initArray(id_BUBBLESORT,id_BESTCASE);       break;
+            case 'd': case 'D': initArray(id_BUBBLESORT,id_RANDOMCASE);     break;
+            case 'e': case 'E': initArray(id_BUBBLESORT,id_WORSTCASE);      break;
+            case 'f': case 'F': initArray(id_INSERSION,id_BESTCASE);        break;
+            case 'g': case 'G': initArray(id_INSERSION,id_RANDOMCASE);      break;
+            case 'h': case 'H': initArray(id_INSERSION,id_WORSTCASE);       break;
             case 'i': case 'I': printf("To be done\n");                     break;
             case 'j': case 'J': printf("To be done\n");                     break;
             case 'k': case 'K': printf("To be done\n");                     break;
