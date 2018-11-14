@@ -9,6 +9,19 @@
 #define SIZE4  8192
 #define SIZE5  16384
 
+/****************************************************************************/
+/* All algorithms and cases. Each defined by their own id.
+/****************************************************************************/
+#define     id_BUBBLESORT       1
+#define     id_INSERSION        2
+#define     id_QUICKSORT        3
+#define     id_LINEARSEARCH     4
+#define     id_BINARYSEARCH     5
+
+#define     id_BESTCASE         1
+#define     id_RANDOMCASE       2
+#define     id_WORSTCASE        3
+
 
 /****************************************************************************/
 /*  Function prototypes                                                     */
@@ -39,6 +52,12 @@ char *setName(int algID);
 char *setCase(int caseID);
 void bubbleSort(int array[],int size);
 float BE_BubbleSort_BestCase(int size);
-int loopGivenTime(int algID,int array[],int size);
+int loopGivenTime(int algID,int caseID,int array[],int size, int searchedValue);
 void insertion(int array[], int size);
+int partition(int A[],int lo,int hi, int caseID);
+void quicksort(int A[],int lo,int hi, int caseID);
+int calcMid(int A[],int lo, int hi);
+void swap(int *a, int *b);
+char *setCol(int algID, int *check);
+void linearSearch(int list[], int size, int searchedValue);
 

@@ -9,19 +9,6 @@
 
 char       lnbuff[MAXLN];               /* input line buffer                */
 int        echomode=0;                  /* echo mode on/off 
-/****************************************************************************/
-/* All algorithms and cases. Each defined by their own id.
-/****************************************************************************/
-#define     id_BUBBLESORT       1
-#define     id_INSERSION        2
-#define     id_QUICKSORT        3
-#define     id_LINEARSEARCH     4
-#define     id_BINARYSEARCH     5
-
-#define     id_BESTCASE         1
-#define     id_RANDOMCASE       2
-#define     id_WORSTCASE        3
-
 
 /****************************************************************************/
 /* User dialog functions                                                    */
@@ -65,7 +52,7 @@ static void UI_dispmenu(){
    printf("***   h:   Insersion Sort - Worst Case                      ***\n");
    printf("***   i:   Quicksort Sort - Best Case                       ***\n");
    printf("***   j:   Quicksort Sort - Random Case                     ***\n");
-   printf("***   k:   Quciksort Sort - Worst Case                      ***\n");
+   printf("***   k:   Quicksort Sort - Worst Case                      ***\n");
    printf("***   l:   Linear Search - Best Case                        ***\n");
    printf("***   m:   Linear Search - Random Case                      ***\n");
    printf("***   n:   Linear Search - Worst Case                       ***\n");
@@ -99,12 +86,12 @@ void UI_runmenu(){
             case 'f': case 'F': initArray(id_INSERSION,id_BESTCASE);        break;
             case 'g': case 'G': initArray(id_INSERSION,id_RANDOMCASE);      break;
             case 'h': case 'H': initArray(id_INSERSION,id_WORSTCASE);       break;
-            case 'i': case 'I': printf("To be done\n");                     break;
-            case 'j': case 'J': printf("To be done\n");                     break;
-            case 'k': case 'K': printf("To be done\n");                     break;
-            case 'l': case 'L': printf("To be done\n");                     break;
-            case 'm': case 'M': printf("To be done\n");                     break;
-            case 'n': case 'N': printf("To be done\n");                     break;
+            case 'i': case 'I': initArray(id_QUICKSORT,id_BESTCASE);        break;
+            case 'j': case 'J': initArray(id_QUICKSORT,id_RANDOMCASE);      break;
+            case 'k': case 'K': initArray(id_QUICKSORT,id_WORSTCASE);       break;
+            case 'l': case 'L': initArray(id_LINEARSEARCH,id_BESTCASE);     break;
+            case 'm': case 'M': initArray(id_LINEARSEARCH,id_RANDOMCASE);   break;
+            case 'n': case 'N': initArray(id_LINEARSEARCH,id_WORSTCASE);    break;
             case 'o': case 'O': printf("To be done\n");                     break;
             case 'p': case 'P': printf("To be done\n");                     break;
             case 'q': case 'Q': printf("To be done\n");                     break;

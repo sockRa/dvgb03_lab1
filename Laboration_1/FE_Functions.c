@@ -17,13 +17,12 @@ static int arrayOfSizes[] = {SIZE1,SIZE2,SIZE3,SIZE4,SIZE5};    /*Init array*/
 
 void tableDisplay(int times[],int algID,char caseID){
 
-    char *name = setName(algID);
-    char *Case = setCase(caseID);
+   int check = 0;
 
     printf("-------------------------------------------------------------------------\n");
-    printf("--- %s-%s                                            ---\n",name,Case);
+    printf("--- %s-%s                                            ---\n",setName(algID),setCase(caseID));
     printf("-------------------------------------------------------------------------\n");
-    printf("---     N     Time          T/N            T/N^2        T/N^3         ---\n");
+    printf("---     N     Time          %s            %s        %s         ---\n",setCol(algID,&check),setCol(algID,&check),setCol(algID,&check));
     printf("-------------------------------------------------------------------------\n");
     printf("---  %d       %d    %e    %e    %e    ---\n",SIZE1,times[0],calc(times[0],arrayOfSizes[0],1), calc(times[0],arrayOfSizes[0],2), calc(times[0],arrayOfSizes[0],3));
     printf("---  %d       %d    %e    %e    %e    ---\n",SIZE2,times[1],calc(times[1],arrayOfSizes[1],1), calc(times[1],arrayOfSizes[1],2), calc(times[1],arrayOfSizes[1],3));
@@ -35,7 +34,8 @@ void tableDisplay(int times[],int algID,char caseID){
 
 void initArray(int algID,int caseID){
 
-    int i,j,random,*list,size,boolean = 1, times[numTest];
+    int i,j,random,*list,size,times[numTest],searchValue;
+    int boolean = 1;
     
     srand(time(NULL));
 
@@ -43,29 +43,31 @@ void initArray(int algID,int caseID){
 
         size = arrayOfSizes[j];             //For every iteration, size gets a new value 
         list = malloc(sizeof(int*) * size);
-
-            //Special cases linked to specific algorithm and case
-            switch(algID){
- 
-            }
             
-            //Standard cases
-            if(boolean){
+            //Special cases
+            switch(algID){
+                case 4: switch(caseID){     //Linear search Best -> worst case
+                    case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 0;                                          break;
+                    case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;
+                    case 3:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                   break;   
+                } break;
+            }
 
+            //Standard cases
                 switch(caseID){
                     case 1:     for(i=0;i<size;i++) *(list + i) = i;                                    break;      //Best-case, sorted order.          
                     case 2:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;      //Random-case
                     case 3:     for(i=0;i<size;i++) *(list + i) = size - i;                             break;      //Worst-case, decending order 
                 }
-            }boolean = 0; 
-
-                //Run algorithms
-                
+            //Run algorithms
                 switch(algID){
 
-                    case 1:     times[j] = loopGivenTime(algID,list,size);      break;      //Bubble-sort
-                    case 2:     times[j] = loopGivenTime(algID,list,size);      break;      //Insertion-sort                    
-                }free(list);
+                    case 1:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //Bubblesort
+                    case 2:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //Insertionsort      
+                    case 3:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //Quicksort      
+                    case 4:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //LinearSearch      
+                }
+                free(list);
     }
     tableDisplay(times,algID,caseID);
 }
