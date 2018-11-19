@@ -2,40 +2,41 @@
 
 //@   Inför uppsatsen, lägg in resultaten i en graf för att visa att det stämmer överens med big O!
 
+/*To-do
+1.  Kasta bort de två-tre första mätningarna på tiden
+2.  fixa display  
+
 /****************************************************************************/
 /* Global data objects                                                      */
 /****************************************************************************/
 
 
-static int numTest = 5;                                         /*how many times should the loop go*/ 
-static int arrayOfSizes[] = {SIZE1,SIZE2,SIZE3,SIZE4,SIZE5};    /*Init array*/  
+static int numTest = 5;                                             /*how many times should the loop go*/ 
+static double arrayOfSizes[] = {SIZE1,SIZE2,SIZE3,SIZE4,SIZE5};     /*Init array*/  
 
 /****************************************************************************/
 /* Result table                                                            
 /****************************************************************************/
 
 
-void tableDisplay(int times[],int algID,char caseID){
+void tableDisplay(double times[],int algID,char caseID){
 
    int check = 0;
 
     printf("-------------------------------------------------------------------------\n");
-    setName(algID);         setCase(caseID);
+    printName(algID);         printCase(caseID);
     printf("-------------------------------------------------------------------------\n");
-    setCol(algID,&check);   setCol(algID,&check);   setCol(algID,&check);
+    printf("N\t");  printf("Time\t");  printCol(algID,&check);   printCol(algID,&check);   printCol(algID,&check);
     printf("-------------------------------------------------------------------------\n");
-    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE1,times[0],calc(times[0],arrayOfSizes[0],1), calc(times[0],arrayOfSizes[0],2), calc(times[0],arrayOfSizes[0],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE2,times[1],calc(times[1],arrayOfSizes[1],1), calc(times[1],arrayOfSizes[1],2), calc(times[1],arrayOfSizes[1],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE3,times[2],calc(times[2],arrayOfSizes[2],1), calc(times[2],arrayOfSizes[2],2), calc(times[2],arrayOfSizes[2],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE4,times[3],calc(times[3],arrayOfSizes[3],1), calc(times[3],arrayOfSizes[3],2), calc(times[3],arrayOfSizes[3],3));
-    printf("---  %d       %d    %e    %e    %e    ---\n",SIZE5,times[4],calc(times[4],arrayOfSizes[4],1), calc(times[4],arrayOfSizes[4],2), calc(times[4],arrayOfSizes[4],3));
+    calc(arrayOfSizes,times,algID);
     printf("-------------------------------------------------------------------------\n");
 }
 
 void initArray(int algID,int caseID){
 
-    int i,j,random,*list,size,times[numTest],searchValue;
+    int i,j,random,*list,size,searchValue;
     int boolean = 1;
+    double times[numTest];
     
     srand(time(NULL));
 
@@ -47,9 +48,9 @@ void initArray(int algID,int caseID){
             //Special cases
             switch(algID){
                 case 4: switch(caseID){     //Linear search Best -> worst case
-                    case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 0;                                          break;
-                    case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;
-                    case 3:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                   break;   
+                    case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 0;                                          break;  //Best
+                    case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;  //Random
+                    case 3:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                   break;  //Worst
                 } break;
             }
 

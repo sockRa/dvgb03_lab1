@@ -2,12 +2,16 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <math.h>
+#include <stdbool.h>
 
-#define SIZE1  1024
-#define SIZE2  2048
-#define SIZE3  4096
-#define SIZE4  8192
-#define SIZE5  16384
+#define SIZE1   1024
+#define SIZE2   2048
+#define SIZE3   4096
+#define SIZE4   8192
+#define SIZE5   16384
+#define POW2    2
+#define POW3    3
 
 /****************************************************************************/
 /* All algorithms and cases. Each defined by their own id.
@@ -37,7 +41,7 @@ static void UI_dispmenu();
 
 //FE_Functions
 int doubleSize(int size);
-void tableDisplay(int times[],int alg,char CaseChoice);
+void tableDisplay(double times[],int alg,char CaseChoice);
 void FE_BubbleSort_BestCase();
 void initArray(int algID,int caseID);
 void runAlgorithm(int algID, int caseID);
@@ -47,12 +51,12 @@ void error();
 void startTimer();
 void stopTimer();
 void resetTimer();
-double calc(double t, double n, int toPower);
+void calc(double N[],double T[],int algID);
 void printName(int algID);
 void printCase(int caseID);
 void bubbleSort(int array[],int size);
 float BE_BubbleSort_BestCase(int size);
-int loopGivenTime(int algID,int caseID,int array[],int size, int searchedValue);
+double loopGivenTime(int algID,int caseID,int array[],int size, int searchedValue);
 void insertion(int array[], int size);
 int partition(int A[],int lo,int hi, int caseID);
 void quicksort(int A[],int lo,int hi, int caseID);
