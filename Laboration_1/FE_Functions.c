@@ -1,10 +1,6 @@
 #include "driver.h"
 
-//@   Inför uppsatsen, lägg in resultaten i en graf för att visa att det stämmer överens med big O!
-
-/*To-do
-1.  Kasta bort de två-tre första mätningarna på tiden
-2.  fixa display  
+ 
 
 /****************************************************************************/
 /* Global data objects                                                      */

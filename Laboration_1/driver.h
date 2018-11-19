@@ -40,30 +40,27 @@ static char UI_get_choice();
 static void UI_dispmenu();
 
 //FE_Functions
-int doubleSize(int size);
-void tableDisplay(double times[],int alg,char CaseChoice);
-void FE_BubbleSort_BestCase();
+void tableDisplay(double times[],int algID,char caseID);
 void initArray(int algID,int caseID);
-void runAlgorithm(int algID, int caseID);
 void runAll();
 
 //BE_Functions
-void error();
 void startTimer();
 void stopTimer();
 void resetTimer();
+
 void calc(double N[],double T[],int algID);
-void printName(int algID);
-void printCase(int caseID);
-void bubbleSort(int array[],int size);
-float BE_BubbleSort_BestCase(int size);
-double loopGivenTime(int algID,int caseID,int array[],int size, int searchedValue);
-void insertion(int array[], int size);
-int partition(int A[],int lo,int hi, int caseID);
-void quicksort(int A[],int lo,int hi, int caseID);
+double loopGivenTime(int algID,int caseID,int *array,int size, int searchedValue);
 int calcMid(int A[],int lo, int hi);
 void swap(int *a, int *b);
+void printName(int algID);
+void printCase(int Case);
 void printCol(int algID, int *check);
-void linearSearch(int list[], int size, int searchedValue);
-void binarySearch(int *list,int low, int size, int searchedValue);
 
+//BE_Algorithms
+void bubbleSort(int *list,int size);
+void insertion(int *array, int size);
+void quicksort(int *A,int lo,int hi, int caseID);
+int partition(int *A,int lo,int hi, int caseID);
+void linearSearch(int *list, int size, int searchedValue);
+void binarySearch(int *list,int low, int size, int searchedValue);
