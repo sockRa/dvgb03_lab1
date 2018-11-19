@@ -7,10 +7,6 @@ clock_t startT,endT;
 
 /**********************************************************/
 
-void error(){
-    printf("Something went wrong\n");
-}
-
 /****************************************************************************/
 /* BE Utilitys                                                           
 /****************************************************************************/
@@ -91,58 +87,48 @@ void swap(int *a, int *b){
 /****************************************************************************/
 
 
-char *setName(int algID){     //Sets name based of argument
+void printName(int algID){     //Sets name based of argument
     
-    char *tempName;
     switch(algID){
 
-        case 1: tempName = "Bubble Sort";       break;
-        case 2: tempName = "Insertion Sort";    break;
-        case 3: tempName = "Quick Sort";        break;
-        case 4: tempName = "Linear Search";     break;
-        case 5: tempName = "Binary Search";     break;
-        default: error();
+        case 1: printf("\tBubble Sort");          break;
+        case 2: printf("\tInsertion Sort");       break;
+        case 3: printf("\tQuick Sort");           break;
+        case 4: printf("\tLinear Search");        break;
+        case 5: printf("\tBinary Search");        break;
     }
-
-    return tempName;
 }
 
-char *setCase(int Case){    //Set case based of argument
+void printCase(int Case){    //Set case based of argument
 
-    char *tempCase;
     switch(Case){
 
-        case 1: tempCase = "Best Case";        break;
-        case 2: tempCase = "Random Case";      break;
-        case 3: tempCase = "Worst Case";       break;
-        default: error();
-        
+        case 1: printf("\t\tBest Case\n");        break;
+        case 2: printf("Random Case");            break;
+        case 3: printf("Worst Case");             break;
     }
-    return tempCase;
 }
 
-void setCol(int algID, int *check){
-
-    char *tempName;
+void printCol(int algID, int *check){
         
         if(algID == 1 || algID == 2){
             switch(*check){
                 case 0:     printf("\t\t\tT/N");        *check = 1;     break;
                 case 1:     printf("\t\t\tT/n²");       *check = 2;     break;      
-                case 2:     printf("\t\tT/n³");         *check = 3;     break;
+                case 2:     printf("\t\tT/n³\n");       *check = 3;     break;
             }
         }
         if(algID == 3){
             switch(*check){
-                case 0:     printf("T/n");              *check = 1;     break;
-                case 1:     printf("T/nlogn");          *check = 2;     break;
-                case 2:     printf("T/n²");             *check = 3;     break;
+                case 0:     printf("\t\t\tT/n");         *check = 1;     break;
+                case 1:     printf("\t\t\tT/nlogn");     *check = 2;     break;
+                case 2:     printf("\t\tT/n²\n");        *check = 3;     break;
             }
         }
             switch(*check){
-                case 0:     printf("T/nlogn");      *check = 1;         break;
-                case 1:     printf("T/n");          *check = 2;         break;
-                case 2:     printf("T/n²");         *check = 3;         break;
+                case 0:     printf("\t\t\tT/nlogn");      *check = 1;     break;
+                case 1:     printf("\t\t\tT/n");          *check = 2;     break;
+                case 2:     printf("\t\t\tT/n²\n");       *check = 3;     break;
             }
 }
 

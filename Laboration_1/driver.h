@@ -48,8 +48,8 @@ void startTimer();
 void stopTimer();
 void resetTimer();
 double calc(double t, double n, int toPower);
-char *setName(int algID);
-char *setCase(int caseID);
+void printName(int algID);
+void printCase(int caseID);
 void bubbleSort(int array[],int size);
 float BE_BubbleSort_BestCase(int size);
 int loopGivenTime(int algID,int caseID,int array[],int size, int searchedValue);
@@ -58,6 +58,6 @@ int partition(int A[],int lo,int hi, int caseID);
 void quicksort(int A[],int lo,int hi, int caseID);
 int calcMid(int A[],int lo, int hi);
 void swap(int *a, int *b);
-void setCol(int algID, int *check);
+void printCol(int algID, int *check);
 void linearSearch(int list[], int size, int searchedValue);
 
