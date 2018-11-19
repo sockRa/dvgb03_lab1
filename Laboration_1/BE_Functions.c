@@ -1,15 +1,11 @@
 #include "driver.h"
 
 /*Global data**********************************************/
-int nRuns = 10,totalTempTime = 0;         /*how many times should the algorithm go*/
-
+int nRuns = 10;         /*how many times should the algorithm go*/
+double totalTempTime = 0;
 clock_t startT,endT; 
 
 /**********************************************************/
-
-void error(){
-    printf("Something went wrong\n");
-}
 
 /****************************************************************************/
 /* BE Utilitys                                                           
@@ -23,7 +19,7 @@ void startTimer(){
 void stopTimer(){
 
     endT = clock();
-    totalTempTime += ((int)(endT - startT));
+    totalTempTime += ((double)(endT - startT));        // casta om tiden som en double för alla beräkningar. Visa upp i tabellen som en int.
     resetTimer();
 }
 
@@ -40,21 +36,21 @@ double calc(double t, double n, int toPower){   //Calc function for doing calcul
         case 1: return t/n;         break;
         case 2: return t/(n*n);     break;
         case 3: return t/(n*n*n);   break;
-        default: error();
     }
 }
 
-int loopGivenTime(int algID,int caseID,int array[],int size, int searchedValue){
+double loopGivenTime(int algID,int caseID,int *list,int size, int searchedValue){
 
-    int runs = nRuns,totalTime;
+    int runs = nRuns;
+    double totalTime;
     while(runs != 0){
         startTimer();
         switch(algID){
-        case 1: bubbleSort(array,size);                                                 break;
-        case 2: insertion(array,size);                                                  break;   
-        case 3: quicksort(array,0,size-1,caseID);                                       break;
-        case 4: linearSearch(array,size,searchedValue);                                 break;
-        // case 5:
+        case 1: bubbleSort(list,size);                                                                 break;
+        case 2: insertion(list,size);                                                                  break;   
+        case 3: quicksort(list,0,size,caseID);                                                         break;
+        case 4: linearSearch(list,size,searchedValue);                                                 break;
+        case 5: insertion(list,size);   binarySearch(list,0,size,searchedValue);                       break;
         }
         runs --;
         stopTimer();
@@ -83,7 +79,6 @@ void swap(int *a, int *b){
     int temp = *a;
     *a = *b;
     *b = temp;
-
 }
 
 /****************************************************************************/
@@ -101,7 +96,6 @@ char *setName(int algID){     //Sets name based of argument
         case 3: tempName = "Quick Sort";        break;
         case 4: tempName = "Linear Search";     break;
         case 5: tempName = "Binary Search";     break;
-        default: error();
     }
 
     return tempName;
@@ -115,7 +109,6 @@ char *setCase(int Case){    //Set case based of argument
         case 1: tempCase = "Best Case";        break;
         case 2: tempCase = "Random Case";      break;
         case 3: tempCase = "Worst Case";       break;
-        default: error();
         
     }
     return tempCase;
@@ -151,35 +144,39 @@ char *setCol(int algID, int *check){
 /* Algorithms                                                           
 /****************************************************************************/
 
-void bubbleSort(int array[],int size){
-    int i,j,temp;
-
-    for(i = 0; i < size; i++){
-        for(j = 0; j < (size - i - 1); j++){
-            if(array[j] > array[j + 1]){
-                swap(&array[j], &array[j + 1]);
+void bubbleSort(int *array,int size){
+    int i,j;
+    bool swapped = false;
+    for(i = 0; i < size - 1; i++){
+        swapped = false;
+        for(j = 0; j < size - 1 - i; j++){
+            if(*(array + j) > *(array + j + 1)){
+                swap((array + j), (array + j + 1));
+                swapped = true;
             }
         }
+        if(!swapped){
+            break;
+        }
     }
+
 }
 
-void insertion(int array[], int size){
+void insertion(int *array, int size){
 
-    int i = 1,j,temp;
+    int i = 1,j;
 
     while(i < size){
         j = i;
-        while(j > 0 && array[j - 1] > array[j]){
-            
-            swap(&array[j], &array[j - 1]);
-
+        while(j > 0 && *(array + j - 1) > *(array + j)){
+            swap((array + j), (array + j - 1));
             j = j - 1;
         }
         i = i + 1;
     }
 }
 
-void quicksort(int A[],int lo,int hi, int caseID){
+void quicksort(int *A,int lo,int hi, int caseID){
     int p;
     if(lo < hi){
         p = partition(A, lo, hi, caseID);
@@ -188,9 +185,9 @@ void quicksort(int A[],int lo,int hi, int caseID){
     }
 }
 
-int partition(int A[],int lo,int hi, int caseID){
+int partition(int *A,int lo,int hi, int caseID){
     int piviot;
-   if(caseID == id_WORSTCASE) piviot = A[lo];
+   if(caseID == id_WORSTCASE) piviot = *(A + lo);
     
     piviot = calcMid(A,lo,hi);   
     
@@ -201,23 +198,47 @@ int partition(int A[],int lo,int hi, int caseID){
     while(1){
         do{
             i = i + 1;
-        }while(A[i] < piviot);
+        }while(*(A + i) < piviot);
 
         do{
             j = j - 1;
-        }while(A[j] > piviot);
+        }while(*(A + j) > piviot);
 
         if (i >= j){
             return j;
         }
-        swap(&A[i], &A[j]);
+        swap((A + i), (A + j));
     }
 }
 
-void linearSearch(int list[], int size, int searchedValue){
+void linearSearch(int *list, int size, int searchedValue){
         int i;
         for(i = 0; i < size; i++){
-            if(list[i] == searchedValue) printf("Found searched value\n");
+            if(*(list + i) == searchedValue) printf("Found searched value\n");
         }
         printf("Did not find searched value\n");
+}
+
+void binarySearch(int *list, int l, int r, int x){ 
+
+   if (r >= l){ 
+    
+        int mid = l + (r - l)/2; 
+  
+        // If the element is present at the middle  
+        // itself 
+        if (*(list + mid) == x)   //printf("Found x\n");
+            
+        // If element is smaller than mid, then  
+        // it can only be present in left subarray 
+        if (*(list + mid) > x)  binarySearch(list, l, mid-1, x);
+             
+        // Else the element can only be present 
+        // in right subarray 
+            binarySearch(list, mid+1, r, x); 
+   } 
+  
+   // We reach here when element is not  
+   // present in array 
+   //printf("Value not found!\n"); 
 }

@@ -47,9 +47,9 @@ static void UI_dispmenu(){
    printf("***   c:   Bubble Sort - Best Case                          ***\n");
    printf("***   d:   Bubble Sort - Random Case                        ***\n");
    printf("***   e:   Bubble Sort - Worst Case                         ***\n");
-   printf("***   f:   Insersion Sort - Best Case                       ***\n");
-   printf("***   g:   Insersion Sort - Random Case                     ***\n");
-   printf("***   h:   Insersion Sort - Worst Case                      ***\n");
+   printf("***   f:   Insertion Sort - Best Case                       ***\n");
+   printf("***   g:   Insertion Sort - Random Case                     ***\n");
+   printf("***   h:   Insertion Sort - Worst Case                      ***\n");
    printf("***   i:   Quicksort Sort - Best Case                       ***\n");
    printf("***   j:   Quicksort Sort - Random Case                     ***\n");
    printf("***   k:   Quicksort Sort - Worst Case                      ***\n");
@@ -92,9 +92,9 @@ void UI_runmenu(){
             case 'l': case 'L': initArray(id_LINEARSEARCH,id_BESTCASE);     break;
             case 'm': case 'M': initArray(id_LINEARSEARCH,id_RANDOMCASE);   break;
             case 'n': case 'N': initArray(id_LINEARSEARCH,id_WORSTCASE);    break;
-            case 'o': case 'O': printf("To be done\n");                     break;
-            case 'p': case 'P': printf("To be done\n");                     break;
-            case 'q': case 'Q': printf("To be done\n");                     break;
+            case 'o': case 'O': initArray(id_BINARYSEARCH,id_BESTCASE);     break;
+            case 'p': case 'P': initArray(id_BINARYSEARCH,id_RANDOMCASE);   break;
+            case 'q': case 'Q': initArray(id_BINARYSEARCH,id_WORSTCASE);    break;
             case 'r': case 'R': UI_exit();                                  break;
 
             default: UI_invalidChoice(); UI_dispmenu();                                      

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define SIZE1  1024
 #define SIZE2  2048
@@ -36,28 +37,29 @@ static char UI_get_choice();
 static void UI_dispmenu();
 
 //FE_Functions
-int doubleSize(int size);
 void tableDisplay(int times[],int alg,char CaseChoice);
-void FE_BubbleSort_BestCase();
 void initArray(int algID,int caseID);
-void runAlgorithm(int algID, int caseID);
+void runAll();
 
 //BE_Functions
-void error();
 void startTimer();
 void stopTimer();
 void resetTimer();
+
 double calc(double t, double n, int toPower);
 char *setName(int algID);
 char *setCase(int caseID);
-void bubbleSort(int array[],int size);
-float BE_BubbleSort_BestCase(int size);
-int loopGivenTime(int algID,int caseID,int array[],int size, int searchedValue);
-void insertion(int array[], int size);
-int partition(int A[],int lo,int hi, int caseID);
-void quicksort(int A[],int lo,int hi, int caseID);
-int calcMid(int A[],int lo, int hi);
 void swap(int *a, int *b);
 char *setCol(int algID, int *check);
-void linearSearch(int list[], int size, int searchedValue);
 
+double loopGivenTime(int algID,int caseID,int *list,int size, int searchedValue);
+int partition(int *A,int lo,int hi, int caseID);
+int calcMid(int A[],int lo, int hi);
+
+
+//Algoritms
+void linearSearch(int *list, int size, int searchedValue);
+void binarySearch(int *list, int l, int r, int x);
+void quicksort(int *A,int lo,int hi, int caseID);
+void insertion(int *array, int size);
+void bubbleSort(int *array,int size);
