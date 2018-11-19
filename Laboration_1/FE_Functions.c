@@ -77,14 +77,14 @@ void initArray(int algID,int caseID){
 }
 
 void runAll(){
-    int algID = 0,caseID = 0, i;
+    int algID = 1,caseID = 1, i;
     int maxRuns = numAlg * numCases;
     
     for(i = 0; i < maxRuns; i++){
         initArray(algID,caseID);
         if(caseID != numCases) caseID ++;
         else{
-            caseID = 0;
+            caseID = 1;
             algID++;
         }
     }

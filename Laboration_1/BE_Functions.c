@@ -228,9 +228,9 @@ int partition(int *A,int lo,int hi, int caseID){
 void linearSearch(int *list, int size, int searchedValue){
         int i;
         for(i = 0; i < size; i++){
-            if(*(list + i) == searchedValue) printf("Found searched value\n");
+            if(*(list + i) == searchedValue) break;
         }
-        printf("Did not find searched value\n");
+        
 }
 
 void binarySearch(int *list,int low, int size, int searchedValue){
