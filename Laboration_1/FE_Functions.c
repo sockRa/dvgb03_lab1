@@ -11,8 +11,11 @@
 /****************************************************************************/
 
 
-static int numTest = 5;                                             /*how many times should the loop go*/ 
+static int numAlg = 5;     //Number of algorithms present
+static int numCases = 3;    //Number of cases present                                         
 static double arrayOfSizes[] = {SIZE1,SIZE2,SIZE3,SIZE4,SIZE5};     /*Init array*/  
+
+
 
 /****************************************************************************/
 /* Result table                                                            
@@ -35,42 +38,56 @@ void tableDisplay(double times[],int algID,char caseID){
 void initArray(int algID,int caseID){
 
     int i,j,random,*list,size,searchValue;
-    int boolean = 1;
-    double times[numTest];
+    double times[numAlg];
     
     srand(time(NULL));
 
-    for(j=0;j<numTest;j++){
+    for(j=0;j<numAlg;j++){
 
         size = arrayOfSizes[j];             //For every iteration, size gets a new value 
         list = malloc(sizeof(int*) * size);
             
-            //Special cases
-            switch(algID){
-                case 4: switch(caseID){     //Linear search Best -> worst case
-                    case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 0;                                          break;  //Best
-                    case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;  //Random
-                    case 3:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                   break;  //Worst
-                } break;
-            }
-
-            //Standard cases
-                switch(caseID){
-                    case 1:     for(i=0;i<size;i++) *(list + i) = i;                                    break;      //Best-case, sorted order.          
-                    case 2:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;      //Random-case
-                    case 3:     for(i=0;i<size;i++) *(list + i) = size - i;                             break;      //Worst-case, decending order 
+                //Linear/Binary-search list prep
+                if(algID == id_LINEARSEARCH || algID == id_BINARYSEARCH){  
+                    switch(caseID){
+                        case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 0;                                          break;  //Best
+                        case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;  //Random
+                        case 3:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                   break;  //Worst
+                    }
+                }
+                else{
+                    //Standard cases
+                        switch(caseID){
+                            case 1:     for(i=0;i<size;i++) *(list + i) = i;                                    break;      //Best-case, sorted order.          
+                            case 2:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;      //Random-case
+                            case 3:     for(i=0;i<size;i++) *(list + i) = size - i;                             break;      //Worst-case, decending order 
+                        }
                 }
             //Run algorithms
                 switch(algID){
-
-                    case 1:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //Bubblesort
-                    case 2:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //Insertionsort      
-                    case 3:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //Quicksort      
-                    case 4:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);      break;       //LinearSearch      
+                    case 1:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);       break;  //Bubblesort
+                    case 2:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);       break;  //Insertionsort      
+                    case 3:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);       break;  //Quicksort      
+                    case 4:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);       break;  //LinearSearch    
+                    case 5:     times[j] = loopGivenTime(algID,caseID,list,size,searchValue);       break;  //BinarySearch  
                 }
                 free(list);
     }
     tableDisplay(times,algID,caseID);
+}
+
+void runAll(){
+    int algID = 0,caseID = 0, i;
+    int maxRuns = numAlg * numCases;
+    
+    for(i = 0; i < maxRuns; i++){
+        initArray(algID,caseID);
+        if(caseID != numCases) caseID ++;
+        else{
+            caseID = 0;
+            algID++;
+        }
+    }
 }
 /*
 @   algID 1 = BUBBLESORT

@@ -47,14 +47,14 @@ void calc(double N[],double T[],int algID){
                     printf("\t%E\n", (T[i] / (pow(N[i],POW3))));
                 }
                 if(algID == id_LINEARSEARCH || algID == id_BINARYSEARCH){
-                    printf("\t%E\t", (T[i] / (N[i] * log(N[i]))));
-                    printf("\t%E\t", (T[i] / N[i]));
-                    printf("\t%E\t\n", (T[i] / (pow(N[i],POW2))));
+                    printf("\t%E", (T[i] / (N[i] * log(N[i]))));
+                    printf("\t%E", (T[i] / N[i]));
+                    printf("\t%E\n", (T[i] / (pow(N[i],POW2))));
                 }
                 if(algID == id_QUICKSORT){
-                    printf("\t%E\t", (T[i] / N[i]));
-                    printf("\t%E\t", (T[i] / (N[i] * log(N[i]))));
-                    printf("\t%E\t\n", (T[i] / (pow(N[i], POW2))));
+                    printf("\t%E", (T[i] / N[i]));
+                    printf("\t%E", (T[i] / (N[i] * log(N[i]))));
+                    printf("\t%E\n", (T[i] / (pow(N[i], POW2))));
                 }
             }
 }   
@@ -65,11 +65,11 @@ double loopGivenTime(int algID,int caseID,int *array,int size, int searchedValue
     while(runs != 0){
         startTimer();
         switch(algID){
-        case 1: bubbleSort(array,size);                                                 break;
-        case 2: insertion(array,size);                                                  break;   
-        case 3: quicksort(array,0,size-1,caseID);                                       break;
-        case 4: linearSearch(array,size,searchedValue);                                 break;
-        // case 5:
+        case 1: bubbleSort(array,size);                                                             break;
+        case 2: insertion(array,size);                                                              break;   
+        case 3: quicksort(array,0,size-1,caseID);                                                   break;
+        case 4: linearSearch(array,size,searchedValue);                                             break;
+        case 5: quicksort(array,0,size-1,caseID);    binarySearch(array,0,size-1,searchedValue);    break;
         }
         runs --;
         stopTimer();
@@ -190,7 +190,7 @@ void insertion(int *array, int size){
     }
 }
 
-void quicksort(int A[],int lo,int hi, int caseID){
+void quicksort(int *A,int lo,int hi, int caseID){
     int p;
     if(lo < hi){
         p = partition(A, lo, hi, caseID);
@@ -199,10 +199,10 @@ void quicksort(int A[],int lo,int hi, int caseID){
     }
 }
 
-int partition(int A[],int lo,int hi, int caseID){
+int partition(int *A,int lo,int hi, int caseID){
     int piviot;
-   if(caseID == id_WORSTCASE) piviot = A[lo];
-    
+    if(caseID == id_WORSTCASE) piviot = *(A + lo);  //Choose piviot to the lowest value if case = worstCase
+                                                    
     piviot = calcMid(A,lo,hi);   
     
     int i = lo - 1;
@@ -212,16 +212,16 @@ int partition(int A[],int lo,int hi, int caseID){
     while(1){
         do{
             i = i + 1;
-        }while(A[i] < piviot);
+        }while(*(A + i) < piviot);
 
         do{
             j = j - 1;
-        }while(A[j] > piviot);
+        }while(*(A + j) > piviot);
 
         if (i >= j){
             return j;
         }
-        swap(&A[i], &A[j]);
+        swap((A + i), (A + j));
     }
 }
 
@@ -231,4 +231,21 @@ void linearSearch(int *list, int size, int searchedValue){
             if(*(list + i) == searchedValue) printf("Found searched value\n");
         }
         printf("Did not find searched value\n");
+}
+
+void binarySearch(int *list,int low, int size, int searchedValue){
+
+    int mid;
+    while(low <= size){
+        mid = low + (size - low) / 2;
+
+        if(*(list + mid) == searchedValue)  break;  //Value found
+        else{
+            if(*(list + mid) < searchedValue) low = mid + 1;
+            else{
+                size = mid - 1;
+            }
+        }
+    }
+
 }

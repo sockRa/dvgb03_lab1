@@ -79,7 +79,7 @@ void UI_runmenu(){
         switch(choice){
 
             case 'a': case 'A': UI_dispmenu();                              break;
-            case 'b': case 'B': printf("To be done\n");                     break;
+            case 'b': case 'B': runAll();                                   break;
             case 'c': case 'C': initArray(id_BUBBLESORT,id_BESTCASE);       break;
             case 'd': case 'D': initArray(id_BUBBLESORT,id_RANDOMCASE);     break;
             case 'e': case 'E': initArray(id_BUBBLESORT,id_WORSTCASE);      break;
@@ -92,9 +92,9 @@ void UI_runmenu(){
             case 'l': case 'L': initArray(id_LINEARSEARCH,id_BESTCASE);     break;
             case 'm': case 'M': initArray(id_LINEARSEARCH,id_RANDOMCASE);   break;
             case 'n': case 'N': initArray(id_LINEARSEARCH,id_WORSTCASE);    break;
-            case 'o': case 'O': printf("To be done\n");                     break;
-            case 'p': case 'P': printf("To be done\n");                     break;
-            case 'q': case 'Q': printf("To be done\n");                     break;
+            case 'o': case 'O': initArray(id_BINARYSEARCH,id_BESTCASE);     break;
+            case 'p': case 'P': initArray(id_BINARYSEARCH,id_RANDOMCASE);   break;
+            case 'q': case 'Q': initArray(id_BINARYSEARCH,id_WORSTCASE);    break;
             case 'r': case 'R': UI_exit();                                  break;
 
             default: UI_invalidChoice(); UI_dispmenu();                                      

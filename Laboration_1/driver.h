@@ -45,6 +45,7 @@ void tableDisplay(double times[],int alg,char CaseChoice);
 void FE_BubbleSort_BestCase();
 void initArray(int algID,int caseID);
 void runAlgorithm(int algID, int caseID);
+void runAll();
 
 //BE_Functions
 void error();
@@ -64,4 +65,5 @@ int calcMid(int A[],int lo, int hi);
 void swap(int *a, int *b);
 void printCol(int algID, int *check);
 void linearSearch(int list[], int size, int searchedValue);
+void binarySearch(int *list,int low, int size, int searchedValue);
 
