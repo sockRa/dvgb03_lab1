@@ -20,9 +20,9 @@ void tableDisplay(int times[],int algID,char caseID){
    int check = 0;
 
     printf("-------------------------------------------------------------------------\n");
-    printf("--- %s-%s                                            ---\n",setName(algID),setCase(caseID));
+    setName(algID);         setCase(caseID);
     printf("-------------------------------------------------------------------------\n");
-    printf("---     N     Time          %s            %s        %s         ---\n",setCol(algID,&check),setCol(algID,&check),setCol(algID,&check));
+    setCol(algID,&check);   setCol(algID,&check);   setCol(algID,&check);
     printf("-------------------------------------------------------------------------\n");
     printf("---  %d       %d    %e    %e    %e    ---\n",SIZE1,times[0],calc(times[0],arrayOfSizes[0],1), calc(times[0],arrayOfSizes[0],2), calc(times[0],arrayOfSizes[0],3));
     printf("---  %d       %d    %e    %e    %e    ---\n",SIZE2,times[1],calc(times[1],arrayOfSizes[1],1), calc(times[1],arrayOfSizes[1],2), calc(times[1],arrayOfSizes[1],3));

@@ -121,28 +121,28 @@ char *setCase(int Case){    //Set case based of argument
     return tempCase;
 }
 
-char *setCol(int algID, int *check){
+void setCol(int algID, int *check){
 
     char *tempName;
         
         if(algID == 1 || algID == 2){
             switch(*check){
-                case 0:     tempName = "T/n";       *check = 1;     return tempName;    break;
-                case 1:     tempName = "T/n²";      *check = 2;     return tempName;    break;      
-                case 2:     tempName = "T/n³";      *check = 3;     return tempName;    break;
+                case 0:     printf("\t\t\tT/N");        *check = 1;     break;
+                case 1:     printf("\t\t\tT/n²");       *check = 2;     break;      
+                case 2:     printf("\t\tT/n³");         *check = 3;     break;
             }
         }
         if(algID == 3){
             switch(*check){
-                case 0:     tempName = "T/n";       *check = 1;     return tempName;    break;
-                case 1:     tempName = "T/nlogn";   *check = 2;     return tempName;    break;
-                case 2:     tempName = "T/n²";      *check = 3;     return tempName;    break;
+                case 0:     printf("T/n");              *check = 1;     break;
+                case 1:     printf("T/nlogn");          *check = 2;     break;
+                case 2:     printf("T/n²");             *check = 3;     break;
             }
         }
             switch(*check){
-                case 0:     tempName = "T/nlogn";   *check = 1;     return tempName;    break;
-                case 1:     tempName = "T/n";       *check = 2;     return tempName;    break;
-                case 2:     tempName = "T/n²";      *check = 3;     return tempName;    break;
+                case 0:     printf("T/nlogn");      *check = 1;         break;
+                case 1:     printf("T/n");          *check = 2;         break;
+                case 2:     printf("T/n²");         *check = 3;         break;
             }
 }
 

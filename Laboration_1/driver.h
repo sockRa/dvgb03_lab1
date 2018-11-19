@@ -58,6 +58,6 @@ int partition(int A[],int lo,int hi, int caseID);
 void quicksort(int A[],int lo,int hi, int caseID);
 int calcMid(int A[],int lo, int hi);
 void swap(int *a, int *b);
-char *setCol(int algID, int *check);
+void setCol(int algID, int *check);
 void linearSearch(int list[], int size, int searchedValue);
 
