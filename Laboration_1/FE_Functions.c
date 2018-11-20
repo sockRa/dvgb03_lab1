@@ -46,9 +46,16 @@ void initArray(int algID,int caseID){
                 //Linear/Binary-search list prep
                 if(algID == id_LINEARSEARCH || algID == id_BINARYSEARCH){  
                     switch(caseID){
-                        case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 0;                                          break;  //Best
+                        case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 1;                                          break;  //Best
                         case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;  //Random
                         case 3:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                   break;  //Worst
+                    }
+                }
+                else if(algID == id_QUICKSORT){
+                    switch(caseID){
+                        case 1:     for(i=0;i<size;i++) *(list + i) = i;                                        break;  //Best
+                        case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}      break;  //Random
+                        case 3:     for(i=0;i<size;i++) *(list + i) = 0; /*Fill entire array with 0*/           break;  //Worst 
                     }
                 }
                 else{

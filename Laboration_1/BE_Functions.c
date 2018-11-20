@@ -201,8 +201,7 @@ void quicksort(int *A,int lo,int hi, int caseID){
 
 int partition(int *A,int lo,int hi, int caseID){
     int piviot;
-    if(caseID == id_WORSTCASE) piviot = *(A + lo);  //Choose piviot to the lowest value if case = worstCase
-                                                    
+
     piviot = calcMid(A,lo,hi);   
     
     int i = lo - 1;
@@ -229,8 +228,7 @@ void linearSearch(int *list, int size, int searchedValue){
         int i;
         for(i = 0; i < size; i++){
             if(*(list + i) == searchedValue) break;
-        }
-        
+        }     
 }
 
 void binarySearch(int *list,int low, int size, int searchedValue){
