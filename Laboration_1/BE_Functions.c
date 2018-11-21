@@ -82,18 +82,6 @@ double loopGivenTime(int algID,int caseID,int *array,int size, int searchedValue
     return totalTime/nRuns;
 }
 
-int calcMid(int A[],int lo, int hi){
-    int mid = (lo + hi) / 2;
-
-    if(A[mid] < A[lo])  swap(&A[lo], &A[mid]);
-
-    if(A[hi] < A[lo])   swap(&A[lo], &A[hi]);
-     
-    if(A[mid] < A[hi])  swap(&A[mid], &A[hi]);
-
-    return A[hi];
-}
-
 void swap(int *a, int *b){
 
     int temp = *a;
@@ -190,38 +178,30 @@ void insertion(int *array, int size){
     }
 }
 
-void quicksort(int *list,int lo,int hi){
+void quicksort(int *list,int low,int high){
+
     int p;
-    if(lo < hi){
-        p = partition(list, lo, hi);
-        quicksort(list, lo, p);
-        quicksort(list, p + 1, hi);
+    if(low < high){
+        p = partition(list,low,high);
+        quicksort(list, low, p-1);
+        quicksort(list, p+1, high);
     }
 }
 
-int partition(int *list,int lo,int hi){
-    int pivot;
-
-    pivot = calcMid(list,lo,hi);   
+int partition(int *list,int low,int high){
     
-    int i = lo - 1;
-    int j = hi + 1;
-    int temp;
+    int pivot = *(list + ((low + high) / 2));
+    while(low<=high){
+        while(*(list + low) < pivot)    low++;
+        while(*(list + high) >= pivot && high >= 0)   high--;
 
-    while(1){
-        do{
-            i = i + 1;
-        }while(*(list + i) < pivot);
-
-        do{
-            j = j - 1;
-        }while(*(list + j) > pivot);
-
-        if (i >= j){
-            return j;
+        if(low <= high){
+            swap((list + low), (list + high));
+            low++;
+            high--;
         }
-        swap((list + i), (list + j));
     }
+return low;
 }
 
 void linearSearch(int *list, int size, int searchedValue){
