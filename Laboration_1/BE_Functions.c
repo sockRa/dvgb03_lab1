@@ -69,7 +69,7 @@ double loopGivenTime(int algID,int caseID,int *array,int size, int searchedValue
         case 2: insertion(array,size);                                                              break;   
         case 3: quicksort(array,0,size-1,caseID);                                                   break;
         case 4: linearSearch(array,size,searchedValue);                                             break;
-        case 5: quicksort(array,0,size-1,caseID);    binarySearch(array,0,size-1,searchedValue);    break;
+        case 5: binarySearch(array,0,size-1,searchedValue);                                         break;
         }
         runs --;
         stopTimer();
