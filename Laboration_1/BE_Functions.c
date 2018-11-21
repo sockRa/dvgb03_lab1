@@ -67,7 +67,7 @@ double loopGivenTime(int algID,int caseID,int *array,int size, int searchedValue
         switch(algID){
         case 1: bubbleSort(array,size);                                                             break;
         case 2: insertion(array,size);                                                              break;   
-        case 3: quicksort(array,0,size-1,caseID);                                                   break;
+        case 3: quicksort(array,0,size-1);                                                          break;
         case 4: linearSearch(array,size,searchedValue);                                             break;
         case 5: binarySearch(array,0,size-1,searchedValue);                                         break;
         }
@@ -190,19 +190,19 @@ void insertion(int *array, int size){
     }
 }
 
-void quicksort(int *A,int lo,int hi, int caseID){
+void quicksort(int *list,int lo,int hi){
     int p;
     if(lo < hi){
-        p = partition(A, lo, hi, caseID);
-        quicksort(A, lo, p, caseID);
-        quicksort(A, p + 1, hi, caseID);
+        p = partition(list, lo, hi);
+        quicksort(list, lo, p);
+        quicksort(list, p + 1, hi);
     }
 }
 
-int partition(int *A,int lo,int hi, int caseID){
-    int piviot;
+int partition(int *list,int lo,int hi){
+    int pivot;
 
-    piviot = calcMid(A,lo,hi);   
+    pivot = calcMid(list,lo,hi);   
     
     int i = lo - 1;
     int j = hi + 1;
@@ -211,16 +211,16 @@ int partition(int *A,int lo,int hi, int caseID){
     while(1){
         do{
             i = i + 1;
-        }while(*(A + i) < piviot);
+        }while(*(list + i) < pivot);
 
         do{
             j = j - 1;
-        }while(*(A + j) > piviot);
+        }while(*(list + j) > pivot);
 
         if (i >= j){
             return j;
         }
-        swap((A + i), (A + j));
+        swap((list + i), (list + j));
     }
 }
 

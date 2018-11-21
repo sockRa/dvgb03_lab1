@@ -60,7 +60,7 @@ void printCol(int algID, int *check);
 //BE_Algorithms
 void bubbleSort(int *list,int size);
 void insertion(int *array, int size);
-void quicksort(int *A,int lo,int hi, int caseID);
-int partition(int *A,int lo,int hi, int caseID);
+void quicksort(int *A,int lo,int hi);
+int partition(int *A,int lo,int hi);
 void linearSearch(int *list, int size, int searchedValue);
 void binarySearch(int *list,int low, int size, int searchedValue);
