@@ -21,7 +21,7 @@ void startTimer(){
 void stopTimer(){
 
     endT = clock();
-   //Skip saving timer the first two times for better results. 
+   //Skip saving time-mesurment the first two times for better results. 
     if(count != 2){
         totalTempTime += ((double)(endT - startT));
     }
@@ -76,10 +76,10 @@ double loopGivenTime(int algID,int caseID,int *array,int size, int searchedValue
     }
 
     totalTime = totalTempTime;      
-    totalTempTime = 0;  //Need to reset totalTempTime after nRuns
-    count = 0;          // Counter to know what time to throw away
+    totalTempTime = 0;          // Need to reset totalTempTime after nRuns
+    count = 0;                  // Counter to know what time to throw away
 
-    return totalTime/nRuns;
+    return totalTime/(nRuns - 2);   // I subtract 2 from nRuns because I throw away the first 2 time-mesurments for a more realistic result.
 }
 
 void swap(int *a, int *b){
