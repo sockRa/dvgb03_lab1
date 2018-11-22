@@ -190,18 +190,21 @@ void quicksort(int *list,int low,int high){
 
 int partition(int *list,int low,int high){
     
-    int pivot = *(list + ((low + high) / 2));
-    while(low<=high){
-        while(*(list + low) < pivot)    low++;
-        while(*(list + high) >= pivot && high >= 0)   high--;
+   int mid = (low + high) / 2;
+   int pivot = *(list + mid);
 
-        if(low <= high){
-            swap((list + low), (list + high));
-            low++;
-            high--;
-        }
-    }
-return low;
+   swap((list + mid), (list + high));
+   int i = low - 1;
+   int j;
+   
+   for(j = low; j < high; j++){
+       if(*(list + j) <= pivot){
+           i++;
+           swap((list + j), (list + i));
+       }
+   }
+   swap((list + i + 1), (list + high));
+   return (i + 1);
 }
 
 void linearSearch(int *list, int size, int searchedValue){
