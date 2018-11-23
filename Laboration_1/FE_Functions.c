@@ -12,7 +12,6 @@ static int numCases = 3;    //Number of cases present
 static double arrayOfSizes[] = {SIZE1,SIZE2,SIZE3,SIZE4,SIZE5};     /*Init array*/  
 
 
-
 /****************************************************************************/
 /* Result table                                                            
 /****************************************************************************/
@@ -46,31 +45,31 @@ void initArray(int algID,int caseID){
                 //Linear/Binary-search list prep
                 if(algID == id_LINEARSEARCH){  
                     switch(caseID){
-                        case 1:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 1;                                          break;  //Best
-                        case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;  //Random
-                        case 3:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                   break;  //Worst
+                        case id_BESTCASE:     for(i=0;i<size;i++) {*(list + i) = i;}    searchValue = 1;                                            break;  //Best
+                        case id_RANDOMCASE:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}   searchValue = random;      break;  //Random
+                        case id_WORSTCASE:     for(i=0;i<size;i++) {*(list + i) = size - i;}   searchValue = -1;                                    break;  //Worst
                     }
                 }
                 else if(algID == id_QUICKSORT){
                     switch(caseID){
-                        case 1:     for(i=0;i<size;i++) *(list + i) = i;                                        break;  //Best
-                        case 2:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}      break;  //Random
-                        case 3:     for(i=0;i<size;i++) *(list + i) = 0; /*Fill entire array with 0*/           break;  //Worst 
+                        case id_BESTCASE:     for(i=0;i<size;i++) *(list + i) = i;                                          break;  //Best
+                        case id_RANDOMCASE:     for(i=0;i<size;i++) {random = rand() % size;    *(list + i) = random;}      break;  //Random
+                        case id_WORSTCASE:     for(i=0;i<size;i++) *(list + i) = 0; /*Fill entire array with 0*/            break;  //Worst 
                     }
                 }
                 else if(algID == id_BINARYSEARCH){
                     switch(caseID){
-                        case 1:     for(i=0;i<size;i++){*(list + i) = i;}   searchValue = 1;                    break;  //Best
-                        case 2:     for(i=0;i<size;i++){*(list + i) = i;}   searchValue = rand() % size;        break;  //Random
-                        case 3:     for(i=0;i<size;i++){*(list + i) = i;}   searchValue = -1;                   break;  //Worst
+                        case id_BESTCASE:     for(i=0;i<size;i++){*(list + i) = i;}   searchValue = 1;                      break;  //Best
+                        case id_RANDOMCASE:     for(i=0;i<size;i++){*(list + i) = i;}   searchValue = rand() % size;        break;  //Random
+                        case id_WORSTCASE:     for(i=0;i<size;i++){*(list + i) = i;}   searchValue = -1;                    break;  //Worst
                     }   
                 }
                 else{
                     //Standard cases
                         switch(caseID){
-                            case 1:     for(i=0;i<size;i++) *(list + i) = i;                                    break;      //Best-case, sorted order.          
-                            case 2:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;      //Random-case
-                            case 3:     for(i=0;i<size;i++) *(list + i) = size - i;                             break;      //Worst-case, decending order 
+                            case id_BESTCASE:     for(i=0;i<size;i++) *(list + i) = i;                                      break;      //Best-case, sorted order.          
+                            case id_RANDOMCASE:     for(i=0;i<size;i++){random = rand() % size; *(list + i) = random;}      break;      //Random-case
+                            case id_WORSTCASE:     for(i=0;i<size;i++) *(list + i) = size - i;                              break;      //Worst-case, decending order 
                         }
                 }
             //Run algorithms

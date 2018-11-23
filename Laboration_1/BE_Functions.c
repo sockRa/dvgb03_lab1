@@ -37,7 +37,8 @@ void resetTimer(){
 //Calc function for doing calculations that's gonna be displayed as result.
 void calc(double N[],double T[],int algID){    
         int i,calc;
-            for(i = 0; i < (nRuns/2); i++){
+
+            for(i = 0; i < (nRuns/2); i++){     
                 printf("%d\t",(int) N[i]);
                 printf("%d",(int) T[i]);
 
@@ -65,11 +66,11 @@ double loopGivenTime(int algID,int caseID,int *array,int size, int searchedValue
     while(runs != 0){
         startTimer();
         switch(algID){
-        case 1: bubbleSort(array,size);                                                             break;
-        case 2: insertion(array,size);                                                              break;   
-        case 3: quicksort(array,0,size-1);                                                          break;
-        case 4: linearSearch(array,size,searchedValue);                                             break;
-        case 5: binarySearch(array,0,size-1,searchedValue);                                         break;
+        case id_BUBBLESORT: bubbleSort(array,size);                         break;
+        case id_INSERSION: insertion(array,size);                           break;   
+        case id_QUICKSORT: quicksort(array,0,size-1);                       break;
+        case id_LINEARSEARCH: linearSearch(array,size,searchedValue);       break;
+        case id_BINARYSEARCH: binarySearch(array,0,size-1,searchedValue);   break;
         }
         runs --;
         stopTimer();
@@ -99,21 +100,21 @@ void printName(int algID){     //Sets name based of argument
     
     switch(algID){
 
-        case 1: printf("\tBubble Sort ");          break;
-        case 2: printf("\tInsertion Sort ");       break;
-        case 3: printf("\tQuick Sort ");           break;
-        case 4: printf("\tLinear Search ");        break;
-        case 5: printf("\tBinary Search ");        break;
+        case id_BUBBLESORT: printf("\tBubble Sort ");           break;
+        case id_INSERSION: printf("\tInsertion Sort ");         break;
+        case id_QUICKSORT: printf("\tQuick Sort ");             break;
+        case id_LINEARSEARCH: printf("\tLinear Search ");       break;
+        case id_BINARYSEARCH: printf("\tBinary Search ");       break;
     }
 }
 
-void printCase(int Case){    //Set case based of argument
+void printCase(int caseID){    //Set case based of argument
 
-    switch(Case){
+    switch(caseID){
 
-        case 1: printf("- Best Case\n");              break;
-        case 2: printf("- Random Case\n");            break;
-        case 3: printf("- Worst Case\n");             break;
+        case id_BESTCASE: printf("- Best Case\n");                  break;
+        case id_RANDOMCASE: printf("- Average Case\n");             break;
+        case id_WORSTCASE: printf("- Worst Case\n");                break;
     }
 }
 
